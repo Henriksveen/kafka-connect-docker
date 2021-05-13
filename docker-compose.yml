@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  kafka-connect:
+    image: confluentinc/cp-kafka-connect:latest
+    container_name: kafka-connect
+    volumes:
+      - ./jars:/etc/kafka-connect/jars/
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: no001safemon18.ddc.teliasonera.net:9094
+      CONNECT_REST_PORT: 28083
+      CONNECT_GROUP_ID: "test-group-id"
+      CONNECT_CONFIG_STORAGE_TOPIC: "quickstart-config"
+      CONNECT_OFFSET_STORAGE_TOPIC: "quickstart-offsets"
+      CONNECT_STATUS_STORAGE_TOPIC: "quickstart-status"
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1 
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1 
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1 
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter" 
+      CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_INTERNAL_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter" 
+      CONNECT_INTERNAL_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "localhost" 
+      CONNECT_PLUGIN_PATH: '/etc/kafka-connect/jars'
+      CONNECT_CONNECTOR_CLIENT_CONFIG_OVERRIDE_POLICY: All
+    network_mode: host

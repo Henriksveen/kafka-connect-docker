@@ -1,0 +1,19 @@
+{
+	"name": "kafka-streams-monitoring-sink",
+	"config": {
+	    "connector.class": "no.safebase.PhoenixSinkConnector",
+	    "topics": "monitoring-events",
+	    "tasks.max": 5,
+	    "request.timeout.ms": "1305000",
+	    "offset.flush.interval.ms": "120000",
+	    "offset.flush.timeout.ms": "60000",
+	    "consumer.override.heartbeat.interval.ms": "20000",
+	    "consumer.override.session.timeout.ms": "60000",
+	    "consumer.override.max.poll.records": "100",
+	    "consumer.override.max.poll.interval.ms": "1300000",
+	    "hbase.zookeeper.quorum": "no001smfront01.ddc.teliasonera.net,no001smfront02.ddc.teliasonera.net",
+	    "batch.size": 5000,
+	    "db.schema": "TIP_OPS",
+	    "topics.configuration": "{\"topics\": {\"monitoring-events\": {\"tableName\": \"MONITORING_EVENTS\", \"dateFields\": [{\"columnName\": \"ts\"}]}}}"
+	}
+}

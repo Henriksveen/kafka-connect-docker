@@ -1,0 +1,21 @@
+{
+  "name": "elasticsearch-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "tasks.max": "1",
+    "topics": "monitoring-events",
+    "key.ignore": "false",
+    "connection.url": "http://localhost:9200",
+    "type.name": "_doc",
+    "schema.ignore": "true",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schemas.enable": false,
+    "transforms":"InsertField,TimestampConverter",
+    "transforms.InsertField.type": "org.apache.kafka.connect.transforms.InsertField$Value",
+    "transforms.InsertField.timestamp.field": "timestamp",
+    "transforms.TimestampConverter.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+    "transforms.TimestampConverter.target.type": "string",
+    "transforms.TimestampConverter.field": "timestamp",
+    "transforms.TimestampConverter.format": "yyyy/MM/dd HH:mm:ss"
+  }
+}
